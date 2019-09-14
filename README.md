@@ -1,5 +1,9 @@
 # CCS Attendance System
+
+
 <a href="https://codeclimate.com/github/Firiyuu/CCSAttendanceSystem/maintainability"><img src="https://api.codeclimate.com/v1/badges/d0e34f6475f64268a07b/maintainability" /></a>
+
+
 College-level attendance system for student administration/communities use. Suggestions are welcome, mail me at phillip@lpmsc.com
 
 
