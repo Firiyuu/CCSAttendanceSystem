@@ -13,7 +13,7 @@ College-level attendance system for student administration/communities use. Sugg
 Install requirements
 
 ```bash
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
