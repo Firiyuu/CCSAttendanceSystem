@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-from db_connection import search_request, fetch_items, fetch_items1, add_request, update_budget, fetch_budget, delete_request, insert_request
+from db_connection import export_data, search_request, fetch_items, fetch_items1, add_request, update_budget, fetch_budget, delete_request, insert_request
 
 
 
@@ -95,10 +95,12 @@ class window(QtWidgets.QMainWindow):
 
         self.tableWidget = QTableWidget()
         # set row count
+        self.tableWidget.setObjectName("tableStudents")
         self.tableWidget.setRowCount(len(items1))
-
         # set column count
         self.tableWidget.setColumnCount(4)
+
+        self.tableWidget.setHorizontalHeaderLabels(['Name', 'Attendance Count', 'ID', 'RFID'])
 
         pc = int(len(item_name)) -1
         i = 0
@@ -116,7 +118,6 @@ class window(QtWidgets.QMainWindow):
         self.b3.setSizePolicy(
         QtWidgets.QSizePolicy.Preferred,
         QtWidgets.QSizePolicy.Expanding)
-
         self.b3.clicked.connect(self.btn_click1)
 
 
@@ -126,7 +127,13 @@ class window(QtWidgets.QMainWindow):
         QtWidgets.QSizePolicy.Preferred,
         QtWidgets.QSizePolicy.Expanding)
 
-        
+        self.b5 = QtWidgets.QPushButton('Export Data')
+        self.b5.clicked.connect(self.btn_click3)
+        self.b5.setSizePolicy(
+        QtWidgets.QSizePolicy.Preferred,
+        QtWidgets.QSizePolicy.Expanding)
+
+
         self.submititem = QtWidgets.QPushButton('Submit')
         self.submititem.clicked.connect(self.btn_submititem)
         self.submititem.hide()
@@ -136,6 +143,8 @@ class window(QtWidgets.QMainWindow):
         v_box.addWidget(message)
         v_box.addWidget(self.b3)
         v_box.addWidget(self.b4)
+        v_box.addWidget(self.b5)
+
         v_box.addStretch()
         v_box.addStretch()
         v_box.addStretch()
@@ -251,6 +260,12 @@ class window(QtWidgets.QMainWindow):
         self.mylineEdit5.hide()
         self.entername.hide()
         self.submititem.hide()
+
+
+    def btn_click3(self):
+        csv_export = export_data()
+        self.title.setText(csv_export)
+        self.title.show()
 
 
 

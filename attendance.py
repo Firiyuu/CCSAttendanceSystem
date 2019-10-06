@@ -218,16 +218,24 @@ class window(QtWidgets.QMainWindow):
             item, value = search_request(self.sample_name)
             if value == '':
                 value = ''
+
+
             budget = self.le.text()
             print(str(item) + '-' + str(value))
-            add_request(str(item), str(value), str(budget), str(self.date))
-            increase_quantity_item(str(item))
-            self.restart_program()
-            self.startNew=1
-            self.message1.setText("ID NUMBER: " + str(value))
-
-            self.message2.setText("STUDENT NAME: " + str(item))
-            self.message3.setText("Attendance Taken")
+            added = add_request(str(item), str(value), str(budget), str(self.date))
+            if added:
+                increase_quantity_item(str(item))
+                self.restart_program()
+                self.startNew=1
+                self.message1.setText("ID NUMBER: " + str(value))
+                self.message2.setText("STUDENT NAME: " + str(item))
+                self.message3.setText("Attendance Taken")
+            else:
+                self.restart_program()
+                self.startNew
+                self.message1.setText("ID NUMBER: " + str(value))
+                self.message2.setText("STUDENT NAME: " + str(item))
+                self.message3.setText("Attendance taken for this event!")               
         else:
             self.message3.setText("Student does not exist")
             self.startNew=1
