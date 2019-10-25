@@ -98,6 +98,9 @@ def add_request(student,id_, event, timestamp_):
     cur.execute(statement, task)
 
     #FOR OWN TABLE
+    event = str(event)
+    event = event.replace(" ","_")
+
     statement1 = "CREATE TABLE IF NOT EXISTS " + str(event) + "(student TEXT,id_ TEXT,time_ TEXT)"
     cur.execute(statement1)
     conn.commit()
